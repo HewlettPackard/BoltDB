@@ -19,6 +19,9 @@
     <None Update="Databases\NoRoot.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Databases\ordinal.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Databases\RootBucketWith152Pairs.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

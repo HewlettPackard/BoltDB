@@ -64,5 +64,21 @@ namespace Bolt.Net.Tests
                 Assert.AreEqual((index + 1).ToString("000"), Encoding.UTF8.GetString(elements[index].Value as byte[]));
             }
         }
+
+        [TestMethod]
+        [DeploymentItem(@"Databases\ordinal.db", @"Databases\ordinal.db")]
+        public void TestOrdinalKeyComparison()
+        {
+            BoltDatabase boltDB = new BoltDatabase(@"Databases\ordinal.db");
+            Bucket rootBucket = boltDB.GetRootBucket();
+            List<KeyValuePair<string, object>> rootElements = rootBucket.GetElements();
+            Assert.AreEqual(1, rootElements.Count);
+            Bucket userRootBucket = rootElements[0].Value as Bucket;
+            Assert.IsNotNull(userRootBucket);
+            Assert.AreEqual("MyRootBucket", rootElements[0].Key);
+            byte[] value = userRootBucket.GetElementValueByKey("beard") as byte[];
+            Assert.IsNotNull(value);
+            Assert.AreEqual("beard", Encoding.UTF8.GetString(value));
+        }
     }
 }
